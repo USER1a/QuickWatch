@@ -1,80 +1,80 @@
-// Header Component
+import { Play } from "lucide-react";
 
-export function renderHeader() {
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent || navigator.vendor || (window.opera && opera.toString() === `[object Opera]`));
-  const isStandalone = window.navigator.standalone;
-  const showIOSInstall = isIOS && !isStandalone;
-  
-  const currentPath = window.location.pathname;
-  const isHome = currentPath === '/' || currentPath === '/index.html';
-  const isMovies = currentPath === '/movies';
-  const isTv = currentPath === '/tv';
-  const isWatchlist = currentPath === '/watchlist';
-  const isSearch = currentPath === '/search';
-
-  setTimeout(() => {
-    const header = document.querySelector('header');
-    if (header) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) { header.classList.add('scrolled'); }
-        else { header.classList.remove('scrolled'); }
-      });
-    }
-  }, 100);
-
-  return `
-    <header class="fixed top-0 left-0 mx-[4rem] bg-transparent transition-all duration-200 rounded-b-2xl z-50 py-3 px-[1rem] pl-[2rem] text-text-primary items-center text-md flex-row justify-between hidden md:flex" style="width: calc(100% - 8rem)">
-      <div class="flex items-center flex-row gap-2">
-        <a href="/" class="text-2xl mr-6 hover:text-accent" style="font-family: 'Instrument Serif';">quickwatch</a>
-        <a href="/" class="px-4 py-2 rounded-lg pagebtn ${isHome ? 'active' : ''}">Home</a>
-        <a href="/movies" class="px-4 py-2 rounded-lg pagebtn ${isMovies ? 'active' : ''}">Movies</a>
-        <a href="/tv" class="px-4 py-2 rounded-lg pagebtn ${isTv ? 'active' : ''}">TV shows</a>
-        <a href="/anime" class="px-4 py-2 rounded-lg pagebtn flex flex-col">
-          <span class="bg-[#eca9b4] text-black px-[0.15rem] rounded-sm text-[0.5rem] absolute bottom-9 ml-8 rotate-4">NEW</span>
-          Anime
-        </a>
+export default function Footer() {
+  return (
+    <footer className="zflix-bg-gray py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 zflix-bg-red rounded flex items-center justify-center">
+                <Play className="text-white" size={14} fill="white" />
+              </div>
+              <h1 className="text-xl font-bold zflix-red">Z-Flix</h1>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Stream unlimited movies and TV shows on Z-Flix. Watch anywhere, anytime, on any device.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4 zflix-text">Browse</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">TV Shows</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Movies</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">New & Popular</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">My List</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4 zflix-text">Support</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Account</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Redeem Gift Cards</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4 zflix-text">Legal</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Cookie Preferences</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Corporate Information</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="border-t border-gray-600 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">© 2024 Z-Flix, Inc. All rights reserved.</p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+              </svg>
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+              </svg>
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="flex items-center flex-row gap-2">
-        <a href="/search" class="px-3 py-2 rounded-full pagebtn ${isSearch ? 'active' : ''}"><i class="fas fa-search aspect-square"></i></a>
-        <a href="/genres" class="p-2 rounded-full pagebtn ${isSearch ? 'active' : ''}">
-          <svg width="24" height="24" class="scale-[80%]" xmlns="http://www.w3.org/2000/svg"><path d="M4.580 3.047 C 3.859 3.185,3.199 3.848,3.044 4.592 C 2.905 5.257,3.105 5.912,3.596 6.404 C 4.393 7.200,5.607 7.200,6.404 6.404 C 7.200 5.607,7.200 4.393,6.404 3.596 C 5.913 3.106,5.277 2.914,4.580 3.047 M11.580 3.047 C 10.859 3.185,10.199 3.848,10.044 4.592 C 9.789 5.816,10.751 7.000,12.000 7.000 C 13.080 7.000,14.000 6.080,14.000 5.000 C 14.000 4.477,13.790 3.983,13.404 3.596 C 12.913 3.106,12.277 2.914,11.580 3.047 M18.580 3.047 C 17.859 3.185,17.199 3.848,17.044 4.592 C 16.789 5.816,17.751 7.000,19.000 7.000 C 19.920 7.000,20.768 6.310,20.956 5.408 C 21.095 4.743,20.895 4.088,20.404 3.596 C 19.913 3.106,19.277 2.914,18.580 3.047 M4.580 10.047 C 4.236 10.113,3.883 10.310,3.596 10.596 C 2.800 11.393,2.800 12.607,3.596 13.404 C 4.393 14.200,5.607 14.200,6.404 13.404 C 7.200 12.607,7.200 11.393,6.404 10.596 C 5.913 10.106,5.277 9.914,4.580 10.047 M11.580 10.047 C 10.707 10.214,10.000 11.087,10.000 12.000 C 10.000 12.920,10.690 13.768,11.592 13.956 C 12.816 14.211,14.000 13.249,14.000 12.000 C 14.000 11.477,13.790 10.983,13.404 10.596 C 12.913 10.106,12.277 9.914,11.580 10.047 M18.580 10.047 C 17.707 10.214,17.000 11.087,17.000 12.000 C 17.000 12.920,17.690 13.768,18.592 13.956 C 19.816 14.211,21.000 13.249,21.000 12.000 C 21.000 11.477,20.790 10.983,20.404 10.596 C 19.913 10.106,19.277 9.914,18.580 10.047 M4.580 17.047 C 3.859 17.185,3.199 17.848,3.044 18.592 C 2.789 19.816,3.751 21.000,5.000 21.000 C 5.920 21.000,6.768 20.310,6.956 19.408 C 7.095 18.743,6.895 18.088,6.404 17.596 C 5.913 17.106,5.277 16.914,4.580 17.047 M11.580 17.047 C 10.859 17.185,10.199 17.848,10.044 18.592 C 9.789 19.816,10.751 21.000,12.000 21.000 C 13.080 21.000,14.000 20.080,14.000 19.000 C 14.000 18.477,13.790 17.983,13.404 17.596 C 12.913 17.106,12.277 16.914,11.580 17.047 M18.580 17.047 C 17.859 17.185,17.199 17.848,17.044 18.592 C 16.789 19.816,17.751 21.000,19.000 21.000 C 20.080 21.000,21.000 20.080,21.000 19.000 C 21.000 18.477,20.790 17.983,20.404 17.596 C 19.913 17.106,19.277 16.914,18.580 17.047 " fill="currentColor" stroke="none" fill-rule="evenodd"></path></svg>
-        </a>
-        <a href="/watchlist" class="p-2 rounded-full pagebtn ${isWatchlist ? 'active' : ''}">
-          <svg width="24" height="24" class="scale-[80%]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.120 2.060 C 5.795 2.140,5.568 2.248,5.300 2.452 C 4.948 2.720,4.755 2.990,4.593 3.440 L 4.500 3.700 4.489 12.237 C 4.482 17.760,4.493 20.850,4.518 20.989 C 4.626 21.574,5.032 21.943,5.620 21.990 C 5.817 22.006,5.910 21.991,6.102 21.913 C 6.233 21.860,7.613 21.103,9.170 20.230 L 12.000 18.645 14.830 20.230 C 16.386 21.103,17.767 21.860,17.898 21.913 C 18.090 21.991,18.183 22.006,18.380 21.990 C 18.968 21.943,19.374 21.574,19.482 20.989 C 19.507 20.850,19.518 17.760,19.511 12.237 L 19.500 3.700 19.407 3.442 C 19.171 2.789,18.725 2.342,18.080 2.113 L 17.820 2.020 12.080 2.013 C 7.380 2.007,6.300 2.016,6.120 2.060 M17.120 11.560 C 17.120 15.542,17.109 18.800,17.097 18.800 C 17.084 18.800,16.071 18.239,14.847 17.553 C 13.622 16.868,12.542 16.272,12.446 16.230 C 12.208 16.125,11.789 16.126,11.547 16.233 C 11.447 16.277,10.367 16.872,9.146 17.556 C 7.926 18.240,6.916 18.800,6.903 18.800 C 6.891 18.800,6.880 15.542,6.880 11.560 L 6.880 4.320 12.000 4.320 L 17.120 4.320 17.120 11.560 " fill="currentColor" stroke="none" fill-rule="evenodd"></path></svg>
-        </a>
-      </div>
-    </header>
-    
-    <style>
-      header.scrolled {
-        background-color: #181d25cc;
-        backdrop-filter: blur(16px);
-      }
-    </style>
-    
-    <div class="fixed bottom-[-2px] left-0 w-full flex justify-around items-center py-4 pb-8 z-50 md:hidden bg-zinc-950">
-      <a href="/" class="text-zinc-400 hover:text-text-primary ${isHome ? 'text-text-primary' : ''} flex flex-col items-center">
-        <i class="icon-home text-2xl"></i>
-        <span class="text-xs mt-1">Home</span>
-      </a>
-      <!-- <a href="/anime" class="text-zinc-400 hover:text-text-primary ${isSearch ? 'text-text-primary' : ''} flex flex-col items-center"> ADD BACK WHEN MOBILE ANIME WORKS
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cat-icon lucide-cat"><path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/></svg>
-        <span class="text-xs mt-1">Anime</span>
-      </a> -->
-      <a href="/search" class="text-zinc-400 hover:text-text-primary ${isSearch ? 'text-text-primary' : ''} flex flex-col items-center">
-        <i class="icon-search text-2xl"></i>
-        <span class="text-xs mt-1">Search</span>
-      </a>
-      <a href="/watchlist" class="text-zinc-400 hover:text-text-primary ${isWatchlist ? 'text-text-primary' : ''} flex flex-col items-center">
-        <i class="icon-bookmark text-2xl"></i>
-        <span class="text-xs mt-1">Watchlist</span>
-      </a>
-      ${showIOSInstall ? `
-      <a href="/iosapp" class="text-zinc-400 hover:text-text-primary flex flex-col items-center">
-        <i class="fab fa-apple text-xl"></i>
-        <span class="text-xs mt-1">Install</span>
-      </a>
-      ` : ''}
-    </div>
-  `;
+    </footer>
+  );
 }
